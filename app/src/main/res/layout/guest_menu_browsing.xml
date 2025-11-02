@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Guest Menu Browsing screen with filtering and a list of items. -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuBrowseActivity">
+
+    <!-- Top App Bar with back button and action button for reservation -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_menu_browse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:title="Restaurant Menu"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="4dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_reserve_table_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book Table"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textColor="@android:color/white"
+            app:icon="@drawable/ic_event_available_24"
+            app:iconTint="@android:color/white"/>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- Horizontal scrollable container for category chips (Veg/Non-Veg filter) -->
+    <HorizontalScrollView
+        android:id="@+id/scroll_view_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_menu_browse">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Items"
+                android:checked="true"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_veg"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vegetarian"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_non_veg"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non-Vegetarian"/>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_desserts"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desserts"/>
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- RecyclerView for the list of menu items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_menu_items"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_categories"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_item_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
