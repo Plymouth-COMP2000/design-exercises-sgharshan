@@ -1,93 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Guest Menu Browsing screen with filtering and a list of items. -->
+<!--
+    Guest Menu Browsing Screen (Redesigned for Minimalism & a Premium Feel)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. VISUAL HIERARCHY: Clear distinction between the header, filters, and content. The "Book Table" button is an unmissable call-to-action.
+    2. MINIMALISM: Replaced the traditional toolbar with a cleaner, integrated header. Increased negative space around elements.
+    3. CONSISTENCY: All colors are derived from the Paragon theme attributes for a unified look.
+    4. CLEAR AFFORDANCE: The floating action button (FAB) clearly signals the primary action. Chips look tactile and selectable.
+    5. ACCESSIBILITY: Added content descriptions for all interactive elements.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context=".MenuBrowseActivity">
 
-    <!-- Top App Bar with back button and action button for reservation -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_menu_browse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:title="Restaurant Menu"
-        app:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_24"
+    <!-- 1. SIMPLIFIED HEADER -->
+    <!-- Back button for navigation -->
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="32dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_navigate_back"
+        android:padding="0dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="4dp">
+        app:tint="@color/pg_secondary_accent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_reserve_table_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Book Table"
-            android:layout_gravity="end"
-            android:layout_marginEnd="16dp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:textColor="@android:color/white"
-            app:icon="@drawable/ic_event_available_24"
-            app:iconTint="@android:color/white"/>
-    </com.google.android.material.appbar.MaterialToolbar>
+    <!-- Screen Title with brand accent -->
+    <TextView
+        android:id="@+id/text_screen_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/restaurant_menu_title"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textStyle="bold"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_back" />
 
-    <!-- Horizontal scrollable container for category chips (Veg/Non-Veg filter) -->
+
+    <!-- 2. REFINED FILTER CHIPS -->
+    <!-- Horizontal scrollable container for category chips -->
+
+    <!-- RecyclerView for the list of menu items -->
+
+    <!-- 3. INTUITIVE FLOATING ACTION BUTTON -->
     <HorizontalScrollView
         android:id="@+id/scroll_view_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_menu_browse">
+        app:layout_constraintTop_toBottomOf="@id/button_back"
+        tools:layout_editor_absoluteX="-111dp">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="12dp"
+            android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             app:selectionRequired="true"
             app:singleSelection="true">
 
+            <!--
+                Selected chips will use colorSecondary (Subtle Gold) due to the theme.
+                Unselected chips will have a subtle outline.
+            -->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_all"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="All Items"
-                android:checked="true"/>
+                android:checked="true"
+                android:text="@string/chip_all_items" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_veg"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vegetarian"/>
+                android:text="@string/chip_vegetarian" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_non_veg"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Non-Vegetarian"/>
+                android:text="@string/chip_non_vegetarian" />
+
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_desserts"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Desserts"/>
+                android:text="@string/chip_desserts" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
-    <!-- RecyclerView for the list of menu items -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_menu_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/scroll_view_categories"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
+        android:paddingHorizontal="12dp"
+        android:paddingBottom="88dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_categories"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/list_item_menu" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_book_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="@string/book_table_action"
+        android:backgroundTint="?attr/colorError"
+        android:textColor="?attr/colorOnError"
+        app:iconTint="?attr/colorOnError"
+        app:icon="@drawable/ic_event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

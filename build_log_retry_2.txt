@@ -1,0 +1,93 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/girit/.gradle/wrapper/dists/gradle-8.13-bin/5xuhj0ry160q40clulazy9h7d/gradle-8.13/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin NO-SOURCE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+
+> Task :app:compileDebugJavaWithJavac FAILED
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:100: error: cannot find symbol
+                                    reservationList.remove(position);
+                                                           ^
+  symbol:   variable position
+  location: class ReservationListAdapter.ReservationViewHolder
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:101: error: cannot find symbol
+                                    notifyItemRemoved(position);
+                                                      ^
+  symbol:   variable position
+  location: class ReservationListAdapter.ReservationViewHolder
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:102: error: cannot find symbol
+                                    notifyItemRangeChanged(position, reservationList.size());
+                                                           ^
+  symbol:   variable position
+  location: class ReservationListAdapter.ReservationViewHolder
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:107: error: cannot find symbol
+                                            ModificationSavedActivity.class);
+                                            ^
+  symbol:   class ModificationSavedActivity
+  location: class ReservationListAdapter.ReservationViewHolder
+Note: C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\MenuBrowseActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+4 errors
+
+[Incubating] Problems report is available at: file:///C:/Users/girit/AndroidStudioProjects/RestaurantManagementApp2/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:100: error: cannot find symbol
+                                      reservationList.remove(position);
+                                                             ^
+    symbol:   variable position
+    location: class ReservationListAdapter.ReservationViewHolder
+  C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:101: error: cannot find symbol
+                                      notifyItemRemoved(position);
+                                                        ^
+    symbol:   variable position
+    location: class ReservationListAdapter.ReservationViewHolder
+  C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:102: error: cannot find symbol
+                                      notifyItemRangeChanged(position, reservationList.size());
+                                                             ^
+    symbol:   variable position
+    location: class ReservationListAdapter.ReservationViewHolder
+  C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\reservation\ReservationListAdapter.java:107: error: cannot find symbol
+                                              ModificationSavedActivity.class);
+                                              ^
+    symbol:   class ModificationSavedActivity
+    location: class ReservationListAdapter.ReservationViewHolder
+  Note: C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\MenuBrowseActivity.java uses or overrides a deprecated API.
+  Note: Recompile with -Xlint:deprecation for details.
+  4 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 2s
+21 actionable tasks: 1 executed, 20 up-to-date

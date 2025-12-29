@@ -1,8 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.RestaurantManagementApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.RestaurantManagementApp" parent="Theme.Material3.Dark.NoActionBar">
+
+        <!-- APPLY NEW PARAGON THEME COLORS HERE -->
+        <!-- Primary Accent (for CTAs like buttons) -->
+        <item name="colorPrimary">@color/pg_primary_accent</item>
+        <item name="colorOnPrimary">@color/pg_text_primary</item>
+
+        <!-- Secondary Accent (for highlights, active states) -->
+        <item name="colorSecondary">@color/pg_secondary_accent</item>
+        <item name="colorOnSecondary">@color/pg_primary_background</item> <!-- Gold text should be on dark bg -->
+
+        <!-- Background and Surface Colors -->
+        <item name="android:colorBackground">@color/pg_primary_background</item>
+        <item name="colorSurface">@color/pg_surface</item>
+        <item name="colorError">@color/pg_error</item>
+
+        <!-- Text Color -->
+        <item name="colorOnSurface">@color/pg_text_primary</item>
+        <item name="colorOnBackground">@color/pg_text_primary</item>
+        <item name="android:textColor">@color/pg_text_primary</item>
+        <item name="android:textColorSecondary">@color/pg_text_secondary</item>
+
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/pg_surface</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.RestaurantManagementApp" parent="Base.Theme.RestaurantManagementApp" />

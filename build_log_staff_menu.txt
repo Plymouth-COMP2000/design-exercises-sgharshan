@@ -1,0 +1,221 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/C:/Users/girit/.gradle/wrapper/dists/gradle-8.13-bin/5xuhj0ry160q40clulazy9h7d/gradle-8.13/lib/native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:processDebugNavigationResources
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:processDebugManifest
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+
+> Task :app:kaptGenerateStubsDebugKotlin
+w: Support for language version 2.0+ in kapt is in Alpha and must be enabled explicitly. Falling back to 1.9.
+
+> Task :app:kaptDebugKotlin FAILED
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:90: error: class, interface, or enum expected
+    private void setupImageSelectors() {
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:94: error: class, interface, or enum expected
+            binding.iconPasta.setSelected(false);
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:95: error: class, interface, or enum expected
+            binding.iconBurger.setSelected(false);
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:96: error: class, interface, or enum expected
+            binding.iconDessert.setSelected(false);
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:97: error: class, interface, or enum expected
+            binding.iconDrink.setSelected(false);
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:100: error: class, interface, or enum expected
+            v.setSelected(true);
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:103: error: class, interface, or enum expected
+            if (v.getId() == R.id.icon_pizza)
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:105: error: class, interface, or enum expected
+            else if (v.getId() == R.id.icon_pasta)
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:107: error: class, interface, or enum expected
+            else if (v.getId() == R.id.icon_burger)
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:109: error: class, interface, or enum expected
+            else if (v.getId() == R.id.icon_dessert)
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:111: error: class, interface, or enum expected
+            else if (v.getId() == R.id.icon_drink)
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:113: error: class, interface, or enum expected
+        };
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:115: error: class, interface, or enum expected
+        binding.iconPizza.setOnClickListener(listener);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:116: error: class, interface, or enum expected
+        binding.iconPasta.setOnClickListener(listener);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:117: error: class, interface, or enum expected
+        binding.iconBurger.setOnClickListener(listener);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:118: error: class, interface, or enum expected
+        binding.iconDessert.setOnClickListener(listener);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:119: error: class, interface, or enum expected
+        binding.iconDrink.setOnClickListener(listener);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:122: error: class, interface, or enum expected
+        if (selectedImageName.equals("ic_food_pasta"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:124: error: class, interface, or enum expected
+    }
+    ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:128: error: class, interface, or enum expected
+        binding.iconPizza.setSelected(false);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:129: error: class, interface, or enum expected
+        binding.iconPasta.setSelected(false);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:130: error: class, interface, or enum expected
+        binding.iconBurger.setSelected(false);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:131: error: class, interface, or enum expected
+        binding.iconDessert.setSelected(false);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:132: error: class, interface, or enum expected
+        binding.iconDrink.setSelected(false);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:134: error: class, interface, or enum expected
+        if (imageName.equals("ic_food_pizza"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:136: error: class, interface, or enum expected
+        else if (imageName.equals("ic_food_pasta"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:138: error: class, interface, or enum expected
+        else if (imageName.equals("ic_food_burger"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:140: error: class, interface, or enum expected
+        else if (imageName.equals("ic_food_dessert"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:142: error: class, interface, or enum expected
+        else if (imageName.equals("ic_food_drink"))
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:144: error: class, interface, or enum expected
+    }
+    ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:148: error: class, interface, or enum expected
+        String desc = binding.editTextDesc.getText().toString().trim();
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:149: error: class, interface, or enum expected
+        String priceStr = binding.editTextPrice.getText().toString().trim();
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:150: error: class, interface, or enum expected
+        String category = binding.spinnerCategory.getSelectedItem().toString();
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:152: error: class, interface, or enum expected
+        if (name.isEmpty() || priceStr.isEmpty()) {
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:154: error: class, interface, or enum expected
+            return;
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:155: error: class, interface, or enum expected
+        }
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:158: error: class, interface, or enum expected
+        String imageName = selectedImageName;
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:160: error: class, interface, or enum expected
+        AppDatabase db = AppDatabase.getDatabase(this);
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:161: error: class, interface, or enum expected
+        MenuItemDao dao = db.menuItemDao();
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:163: error: class, interface, or enum expected
+        if (editingMenuItemId != -1) {
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:166: error: class, interface, or enum expected
+            updateItem.setId(editingMenuItemId); // Assuming
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:173: error: class, interface, or enum expected
+            new Thread(() -> {
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:175: error: class, interface, or enum expected
+                runOnUiThread(() -> {
+                ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:177: error: class, interface, or enum expected
+                    finish();
+                    ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:178: error: class, interface, or enum expected
+                });
+                ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:179: error: class, interface, or enum expected
+            }).start();
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:180: error: class, interface, or enum expected
+        } else {
+        ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:183: error: class, interface, or enum expected
+            new Thread(() -> {
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:185: error: class, interface, or enum expected
+                runOnUiThread(() -> {
+                ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:187: error: class, interface, or enum expected
+                    finish();
+                    ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:188: error: class, interface, or enum expected
+                });
+                ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:189: error: class, interface, or enum expected
+            }).start();
+            ^
+C:\Users\girit\AndroidStudioProjects\RestaurantManagementApp2\app\src\main\java\com\example\restaurantmanagementapp\ui\menu\ManageMenuActivity.java:190: error: class, interface, or enum expected
+        }
+        ^
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:kaptDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.gradle.internal.KaptWithoutKotlincTask$KaptExecutionWorkAction
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 9s
+31 actionable tasks: 13 executed, 18 up-to-date

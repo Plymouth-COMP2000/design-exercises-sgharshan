@@ -1,175 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Guest Settings screen: for managing account and notification preferences. -->
+<!--
+    Guest Settings Screen (Redesigned for Paragon Theme)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. HIERARCHY: Gold title and bold section headers create a clear, scannable structure.
+    2. MINIMALISM: Replaced the toolbar and removed unnecessary separator lines for a cleaner, premium feel.
+    3. CONSISTENCY: Fully integrated with the Charcoal, Maroon, and Gold theme for a seamless user experience.
+    4. CLEAR AFFORDANCE: The "Sign Out" button uses a distinct error color to signal a destructive action.
+    5. ACCESSIBILITY: All interactive elements have content descriptions and sufficient contrast.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F8F8"
+    android:background="?android:attr/colorBackground"
     tools:context=".GuestSettingsActivity">
 
-    <!-- Top App Bar with title and back button -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_settings"
-        android:layout_width="match_parent"
+    <!-- 1. SIMPLIFIED HEADER -->
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:title="My Profile and Settings"
-        app:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_24"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_navigate_back"
+        android:padding="8dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="4dp" />
+        app:tint="?attr/colorOnSurface" />
 
+    <TextView
+        android:id="@+id/text_screen_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_title"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="?attr/colorSecondary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_back" />
+
+    <!-- 2. SCROLLABLE SETTINGS CONTENT -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_settings"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:clipToPadding="false"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="32dp">
 
             <!-- Account Details Section -->
             <TextView
+                style="@style/TextAppearance.Material3.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account Details"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="16dp"
+                android:text="@string/account_details"
+                android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:paddingHorizontal="16dp">
 
-                    <!-- Username/Name Display -->
                     <TextView
                         android:id="@+id/text_user_name"
+                        style="@style/TextAppearance.Material3.BodyLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Name: Giridar Harshan"
-                        android:paddingVertical="8dp"
                         android:drawablePadding="16dp"
-                        app:drawableStartCompat="@drawable/ic_person_24"/>
+                        android:gravity="center_vertical"
+                        android:paddingVertical="12dp"
+                        app:drawableStartCompat="@drawable/person"
+                        app:drawableTint="?attr/colorSecondary"
+                        tools:text="Name: Giritheesh" />
 
-                    <!-- Email Display -->
                     <TextView
                         android:id="@+id/text_user_email"
+                        style="@style/TextAppearance.Material3.BodyLarge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Email: g.harshan@example.com"
-                        android:paddingVertical="8dp"
                         android:drawablePadding="16dp"
-                        app:drawableStartCompat="@drawable/ic_email_24"/>
+                        android:gravity="center_vertical"
+                        android:paddingVertical="12dp"
+                        app:drawableStartCompat="@drawable/ic_email_24"
+                        app:drawableTint="?attr/colorSecondary"
+                        tools:text="Email: giritheesh@example.com" />
 
-                    <!-- Edit Profile Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_edit_profile"
+                        style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edit Profile"
+                        android:layout_gravity="end"
                         android:layout_marginTop="8dp"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"/>
-
+                        android:text="@string/edit_profile" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Notification Preferences Section -->
             <TextView
+                style="@style/TextAppearance.Material3.TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notification Preferences"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/notification_preferences"
+                android:textStyle="bold" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingHorizontal="16dp"
+                    android:paddingHorizontal="4dp"
                     android:paddingVertical="8dp">
 
-                    <!-- Switch for Reservation Modification Alerts -->
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switch_reservation_updates"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Reservation Modification Alerts"
                         android:checked="true"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
-                        android:hint="Get notified when your booking time or size changes."/>
+                        android:text="@string/reservation_modification_alerts" />
 
-                    <!-- Separator -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"
-                        android:layout_marginVertical="4dp"/>
-
-                    <!-- Switch for Reservation Cancellation Alerts -->
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switch_cancellation_alerts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cancellation Alerts"
                         android:checked="true"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
-                        android:hint="Get notified if your reservation is cancelled by the restaurant."/>
+                        android:text="@string/cancellation_alerts" />
 
-                    <!-- Separator -->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#EEEEEE"
-                        android:layout_marginVertical="4dp"/>
-
-                    <!-- Switch for Promotional Offers -->
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switch_promotional_offers"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Promotional Offers"
                         android:checked="false"
+                        android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
-                        android:hint="Receive alerts for special discounts and events."/>
-
+                        android:text="@string/promotional_offers" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Sign Out Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_sign_out"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign Out"
-                android:paddingVertical="12dp"
                 android:layout_marginTop="40dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:textColor="#D32F2F"
-                app:strokeColor="#D32F2F"/>
+                android:paddingVertical="12dp"
+                android:text="@string/sign_out"
+                android:textColor="@color/pg_error"
+                app:strokeColor="@color/pg_error" />
 
         </LinearLayout>
     </ScrollView>

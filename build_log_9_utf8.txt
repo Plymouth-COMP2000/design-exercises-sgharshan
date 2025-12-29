@@ -1,0 +1,596 @@
+﻿.\gradlew : WARNING: 
+A restricted method 
+in java.lang.System 
+has been called
+At line:1 char:1
++ .\gradlew 
+assembleDebug > 
+build_log_9.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (WARNING   
+ : A rest...has b    
+een called:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+WARNING: java.lang.Sy
+stem::load has been 
+called by net.rubygra
+pefruit.platform.inte
+rnal.NativeLibraryLoa
+der in an unnamed 
+module (file:/C:/User
+s/girit/.gradle/wrapp
+er/dists/gradle-8.13-
+bin/5xuhj0ry160q40clu
+lazy9h7d/gradle-8.13/
+lib/native-platform-0
+.22-milestone-28.jar)
+WARNING: Use --enable
+-native-access=ALL-UN
+NAMED to avoid a 
+warning for callers 
+in this module
+WARNING: Restricted 
+methods will be 
+blocked in a future 
+release unless 
+native access is 
+enabled
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kaptGenerateStubsDebugKotlin UP-TO-DATE
+> Task :app:kaptDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin NO-SOURCE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+
+> Task :app:compileDebugJavaWithJavac FAILED
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:1
+0: error: cannot 
+find symbol
+import com.example.re
+staurantmanagementapp
+.data.Guest;
+                     
+                     
+     ^
+  symbol:   class 
+Guest
+  location: package c
+om.example.restaurant
+managementapp.data
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:1
+1: error: cannot 
+find symbol
+import com.example.re
+staurantmanagementapp
+.data.Staff;
+                     
+                     
+     ^
+  symbol:   class 
+Staff
+  location: package c
+om.example.restaurant
+managementapp.data
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:2
+5: error: cannot 
+find symbol
+        db = AppDatab
+ase.getInstance(getAp
+plicationContext());
+                     
+   ^
+  symbol:   method 
+getInstance(Context)
+  location: class 
+AppDatabase
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:5
+2: error: cannot 
+find symbol
+        AppDatabase.d
+atabaseWriteExecutor.
+execute(() -> {
+                   ^
+  symbol:   variable 
+databaseWriteExecutor
+  location: class 
+AppDatabase
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:5
+6: error: cannot 
+find symbol
+                    
+if (db.guestDao().fin
+dByEmail(email) != 
+null) {
+                     
+     ^
+  symbol:   method 
+guestDao()
+  location: variable 
+db of type 
+AppDatabase
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:6
+1: error: cannot 
+find symbol
+                    
+Guest newGuest = new 
+Guest(name, email, 
+password);
+                    ^
+  symbol:   class 
+Guest
+  location: class 
+RegisterActivity
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:6
+1: error: cannot 
+find symbol
+                    
+Guest newGuest = new 
+Guest(name, email, 
+password);
+                     
+                    ^
+  symbol:   class 
+Guest
+  location: class 
+RegisterActivity
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:6
+2: error: cannot 
+find symbol
+                    d
+b.guestDao().insert(n
+ewGuest);
+                     
+ ^
+  symbol:   method 
+guestDao()
+  location: variable 
+db of type 
+AppDatabase
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:6
+9: error: cannot 
+find symbol
+                    
+if (db.staffDao().fin
+dByEmail(email) != 
+null) {
+                     
+     ^
+  symbol:   method 
+staffDao()
+  location: variable 
+db of type 
+AppDatabase
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:7
+4: error: cannot 
+find symbol
+                    
+Staff newStaff = new 
+Staff(name, email, 
+password, "Waiter"); 
+// Default role
+                    ^
+  symbol:   class 
+Staff
+  location: class 
+RegisterActivity
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:7
+4: error: cannot 
+find symbol
+                    
+Staff newStaff = new 
+Staff(name, email, 
+password, "Waiter"); 
+// Default role
+                     
+                    ^
+  symbol:   class 
+Staff
+  location: class 
+RegisterActivity
+C:\Users\girit\Androi
+dStudioProjects\Resta
+urantManagementApp2\a
+pp\src\main\java\com\
+example\restaurantman
+agementapp\network\Re
+gisterActivity.java:7
+5: error: cannot 
+find symbol
+                    d
+b.staffDao().insert(n
+ewStaff);
+                     
+ ^
+  symbol:   method 
+staffDao()
+  location: variable 
+db of type 
+AppDatabase
+Note: C:\Users\girit\
+AndroidStudioProjects
+\RestaurantManagement
+App2\app\src\main\jav
+a\com\example\restaur
+antmanagementapp\Menu
+BrowseActivity.java 
+uses or overrides a 
+deprecated API.
+Note: Recompile with 
+-Xlint:deprecation 
+for details.
+12 errors
+
+[Incubating] Problems report is available at: file:///C:/Users/girit/AndroidStudioProjects/RestaurantManagementApp2/build/reports/problems/problems-report.html
+
+FAILURE: Build 
+failed with an 
+exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:compileDeb
+ugJavaWithJavac'.
+> Compilation 
+failed; see the 
+compiler output 
+below.
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:10: error: cannot 
+find symbol
+  import com.example.
+restaurantmanagementa
+pp.data.Guest;
+                     
+                     
+       ^
+    symbol:   class 
+Guest
+    location: 
+package com.example.r
+estaurantmanagementap
+p.data
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:11: error: cannot 
+find symbol
+  import com.example.
+restaurantmanagementa
+pp.data.Staff;
+                     
+                     
+       ^
+    symbol:   class 
+Staff
+    location: 
+package com.example.r
+estaurantmanagementap
+p.data
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:25: error: cannot 
+find symbol
+          db = AppDat
+abase.getInstance(get
+ApplicationContext())
+;
+                     
+     ^
+    symbol:   method 
+getInstance(Context)
+    location: class 
+AppDatabase
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:52: error: cannot 
+find symbol
+          AppDatabase
+.databaseWriteExecuto
+r.execute(() -> {
+                     
+^
+    symbol:   
+variable 
+databaseWriteExecutor
+    location: class 
+AppDatabase
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:56: error: cannot 
+find symbol
+                     
+ if (db.guestDao().fi
+ndByEmail(email) != 
+null) {
+                     
+       ^
+    symbol:   method 
+guestDao()
+    location: 
+variable db of type 
+AppDatabase
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:61: error: cannot 
+find symbol
+                     
+ Guest newGuest = 
+new Guest(name, 
+email, password);
+                     
+ ^
+    symbol:   class 
+Guest
+    location: class 
+RegisterActivity
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:61: error: cannot 
+find symbol
+                     
+ Guest newGuest = 
+new Guest(name, 
+email, password);
+                     
+                     
+ ^
+    symbol:   class 
+Guest
+    location: class 
+RegisterActivity
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:62: error: cannot 
+find symbol
+                     
+ db.guestDao().insert
+(newGuest);
+                     
+   ^
+    symbol:   method 
+guestDao()
+    location: 
+variable db of type 
+AppDatabase
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:69: error: cannot 
+find symbol
+                     
+ if (db.staffDao().fi
+ndByEmail(email) != 
+null) {
+                     
+       ^
+    symbol:   method 
+staffDao()
+    location: 
+variable db of type 
+AppDatabase
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:74: error: cannot 
+find symbol
+                     
+ Staff newStaff = 
+new Staff(name, 
+email, password, 
+"Waiter"); // 
+Default role
+                     
+ ^
+    symbol:   class 
+Staff
+    location: class 
+RegisterActivity
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:74: error: cannot 
+find symbol
+                     
+ Staff newStaff = 
+new Staff(name, 
+email, password, 
+"Waiter"); // 
+Default role
+                     
+                     
+ ^
+    symbol:   class 
+Staff
+    location: class 
+RegisterActivity
+  C:\Users\girit\Andr
+oidStudioProjects\Res
+taurantManagementApp2
+\app\src\main\java\co
+m\example\restaurantm
+anagementapp\network\
+RegisterActivity.java
+:75: error: cannot 
+find symbol
+                     
+ db.staffDao().insert
+(newStaff);
+                     
+   ^
+    symbol:   method 
+staffDao()
+    location: 
+variable db of type 
+AppDatabase
+  Note: C:\Users\giri
+t\AndroidStudioProjec
+ts\RestaurantManageme
+ntApp2\app\src\main\j
+ava\com\example\resta
+urantmanagementapp\Me
+nuBrowseActivity.java
+ uses or overrides a 
+deprecated API.
+  Note: Recompile 
+with 
+-Xlint:deprecation 
+for details.
+  12 errors
+
+* Try:
+> Check your code 
+and dependencies to 
+fix the compilation 
+error(s)
+> Run with --scan to 
+get full insights.
+
+BUILD FAILED in 2s
+21 actionable tasks: 1 executed, 20 up-to-date

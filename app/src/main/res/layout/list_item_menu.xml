@@ -1,61 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout for a single menu item in a list (Redesigned for Paragon Theme)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. HIERARCHY: The dish name is the most prominent element, followed by the gold-accented price.
+    2. MINIMALISM: Clean layout with improved spacing and alignment. No hardcoded colors.
+    3. CONSISTENCY: Fully integrated with the Charcoal, Maroon, and Gold theme. Card background is updated.
+    4. CLEAR AFFORDANCE: The layout is clearly a list item, designed for scanning.
+    5. ACCESSIBILITY: Text uses high-contrast theme colors for excellent legibility on the dark background.
+-->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginVertical="4dp"
-    app:cardElevation="2dp">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardElevation="1dp"
+    app:strokeColor="?attr/colorOutline"
+    app:strokeWidth="0.5dp"
+    app:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/image_view_food_type"
-            android:layout_width="74dp"
-            android:layout_height="73dp"
-            android:contentDescription="Food type indicator"
+        <!-- Image of the food item. Rounded corners for a softer look. -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_view_food_item"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
             tools:src="@drawable/pasta" />
 
+        <!-- Item Name (Main Title) -->
         <TextView
             android:id="@+id/text_view_item_name"
-            android:layout_width="199dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="8dp"
-            android:textSize="18sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="?attr/colorOnSurface"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/text_view_price"
-            app:layout_constraintStart_toEndOf="@id/image_view_food_type"
-            app:layout_constraintTop_toTopOf="@id/image_view_food_type"
+            app:layout_constraintStart_toEndOf="@id/image_view_food_item"
+            app:layout_constraintTop_toTopOf="@id/image_view_food_item"
             tools:text="Chef's Special Pasta" />
 
+        <!-- Item Description (Secondary Text) -->
         <TextView
             android:id="@+id/text_view_item_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
             android:textColor="?android:attr/textColorSecondary"
-            app:layout_constraintStart_toStartOf="@id/text_view_item_name"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_view_item_name"
             app:layout_constraintTop_toBottomOf="@id/text_view_item_name"
             tools:text="Creamy alfredo with sun-dried tomatoes and fresh basil, served with garlic bread."/>
 
+        <!-- Price (Accent Color) -->
         <TextView
             android:id="@+id/text_view_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="?attr/colorSecondary"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_item_name"
             tools:text="$15.99"/>
+
+        <!-- Staff Action Buttons (Initially Gone) -->
+        <LinearLayout
+            android:id="@+id/layout_staff_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_price"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/button_edit_item"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_edit_24"
+                app:tint="?attr/colorSecondary"
+                android:contentDescription="Edit Item" />
+
+            <ImageButton
+                android:id="@+id/button_delete_item"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_delete" 
+                app:tint="?attr/colorError"
+                android:contentDescription="Delete Item" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Base Colors -->
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- NEW THEME: PARAGON - Maroon & Gold -->
+    <color name="pg_primary_background">#121212</color>  <!-- Ultra Deep Charcoal -->
+    <color name="pg_surface">#1E1E1E</color>            <!-- Surface -->
+    <color name="pg_primary_accent">#800000</color>      <!-- Deep Royal Maroon -->
+    <color name="pg_primary_accent_variant">#5C0000</color> <!-- Darker Maroon -->
+    <color name="pg_secondary_accent">#FFD700</color>    <!-- Bright Gold -->
+    <color name="pg_text_primary">#FFFFFF</color>
+    <color name="pg_text_secondary">#B3FFFFFF</color>
+    <color name="pg_error">#CF6679</color>
+
+    <!-- Legacy / Compatibility -->
+    <color name="colorPrimary">@color/pg_primary_accent</color>
+    <color name="colorPrimaryDark">@color/pg_primary_accent_variant</color>
+    <color name="colorAccent">@color/pg_secondary_accent</color>
 </resources>

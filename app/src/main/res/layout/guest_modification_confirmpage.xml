@@ -1,93 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Guest Modification Confirmation Page (Redesigned for Paragon Theme)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. HIERARCHY: Gold icon and bold title draw immediate attention.
+    2. MINIMALISM: Clean, spacious layout focuses on the message. No unnecessary lines or boxes.
+    3. CONSISTENCY: Uses the same Charcoal, Maroon, and Gold theme attributes as other screens.
+    4. CLEAR AFFORDANCE: The primary button ("View Details") uses the Maroon accent; the secondary button ("Done") is a subtle text button.
+    5. ACCESSIBILITY: Clear content descriptions for interactive elements.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     android:padding="24dp"
-    tools:context=".ModificationSavedActivity">
+    tools:context=".ModificationSavedActivity"
+    tools:ignore="ExtraText">
 
+    <!-- Vertically centered content group -->
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="image_save_icon,text_title,text_subtitle"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- 1. ICON (using brand's secondary accent) -->
+    <!-- 1. ICON (using brand's secondary accent) -->
     <ImageView
         android:id="@+id/image_save_icon"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@drawable/save"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/desc_changes_saved_icon"
+        android:src="@drawable/ic_check_circle"
+        app:tint="?attr/colorSecondary"
+        app:layout_constraintBottom_toTopOf="@id/text_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_title"
-        android:contentDescription="Save icon"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
+
+    <!-- 2. MAIN TITLE -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Changes Saved"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:layout_marginTop="24dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/image_save_icon"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/changes_saved_title"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/text_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_subtitle"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_save_icon" />
 
+    <!-- 3. SUBTITLE MESSAGE -->
     <TextView
         android:id="@+id/text_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Your reservation details have been successfully updated."
-        android:textSize="16sp"
+        android:gravity="center"
+        android:text="@string/changes_saved_subtitle"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         android:textColor="?android:attr/textColorSecondary"
-        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"/>
+        app:layout_constraintWidth_max="300dp" />
 
-    <TextView
-        android:id="@+id/text_summary_details"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="12dp"
-        android:background="@drawable/background_rounded_corners"
-        android:gravity="center"
-        android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@id/text_subtitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="New Date: 25 Dec, 7:00 PM for 4 guests."/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
-
+    <!-- 4. ACTION BUTTONS (at the bottom) -->
+    <!-- Primary Action Button (CTA) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_view_updated_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View Updated Details"
-        app:icon="@drawable/ic_edit_24"
-        app:layout_constraintBottom_toTopOf="@id/button_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="14dp"
+        android:text="@string/view_updated_details"
+        app:layout_constraintBottom_toTopOf="@id/button_done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- Secondary Action Button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_back"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/button_done"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Done"
+        android:text="@string/done_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

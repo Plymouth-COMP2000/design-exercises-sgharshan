@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Booking Confirmation Screen
+    Improvements:
+    - Centered the main content vertically for better visual balance.
+    - Uses string resources for all text.
+    - Primary and secondary buttons are clearly distinguished.
+    - Improved accessibility with a more descriptive content description.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,25 +16,28 @@
     android:padding="24dp"
     tools:context=".BookingConfirmedActivity">
 
+    <!-- Success Icon -->
     <ImageView
         android:id="@+id/image_success_icon"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/circle"
+        android:src="@drawable/ic_check_circle"
+        app:tint="?attr/colorSecondary"
+        android:contentDescription="@string/desc_success_checkmark"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/text_title"
-        android:contentDescription="Success checkmark icon"/>
+        app:layout_constraintBottom_toTopOf="@+id/text_title"/>
 
+    <!-- Main Title -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Table Booked!"
-        android:textSize="28sp"
+        android:layout_marginTop="24dp"
+        android:text="@string/booking_confirmed_title"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/image_success_icon"
@@ -34,44 +45,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/text_subtitle"/>
 
+    <!-- Subtitle Message -->
     <TextView
         android:id="@+id/text_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Your reservation is confirmed. We look forward to seeing you!"
-        android:textSize="16sp"
+        android:text="@string/booking_confirmed_subtitle"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         android:textColor="?android:attr/textColorSecondary"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/text_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
-
+    <!-- Primary Action Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_view_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="View Reservation Details"
-        app:icon="@drawable/ic_restaurant_24"
+        android:layout_marginBottom="8dp"
+        android:paddingVertical="14dp"
+        android:text="@string/view_reservation_details"
         app:layout_constraintBottom_toTopOf="@id/button_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Secondary Action Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_home"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Back to Menu"
+        android:text="@string/back_to_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
