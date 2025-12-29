@@ -1,105 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for a single reservation item shown to the Guest.
-     Includes key details and action buttons (Modify/Cancel) as per the redesign. -->
+<!--
+    Layout for a single reservation item in a list (Redesigned for Paragon Theme)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. HIERARCHY: Key details like Date and Time are prominent.
+    2. MINIMALISM: A clean, card-based design with clear separation of info and actions. No harsh lines.
+    3. CONSISTENCY: Fully integrated with the Charcoal, Maroon, and Gold theme.
+    4. CLEAR AFFORDANCE: Buttons are clearly defined actions. "Cancel" uses an error color to warn the user.
+    5. ACCESSIBILITY: Content descriptions are clear for icons and actions.
+-->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
-
-
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="12dp"
+    app:cardBackgroundColor="?attr/colorSurface"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="2dp"
+    app:strokeWidth="0.5dp"
+    app:strokeColor="?attr/colorOutline">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Reservation Status Icon/Indicator (Top Left) -->
+        <!-- 1. RESERVATION STATUS ICON (Gold for 'confirmed') -->
+        <!-- Subtle Gold -->
+
+        <!-- 2. RESERVATION DETAILS -->
+        <!-- Main Info: Date -->
         <ImageView
             android:id="@+id/icon_status"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:contentDescription="Reservation Status"
-            android:src="@drawable/circle"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/desc_reservation_status"
+            android:src="@drawable/ic_check_circle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/pg_primary_accent" />
 
-        <!-- Date TextView -->
         <TextView
             android:id="@+id/text_reservation_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Date: 25/11/2025"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon_status"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/icon_status"
+            app:layout_constraintBottom_toBottomOf="@id/icon_status"
+            tools:text="November 25, 2025" />
 
-        <!-- Time TextView -->
+        <!-- Secondary Info: Time and Party Size -->
         <TextView
-            android:id="@+id/text_reservation_time"
+            android:id="@+id/text_reservation_time_and_guests"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="Time: 7:00 PM"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_status"
-            app:layout_constraintTop_toBottomOf="@id/text_reservation_date" />
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="@id/text_reservation_date"
+            app:layout_constraintStart_toStartOf="@id/text_reservation_date"
+            app:layout_constraintTop_toBottomOf="@id/text_reservation_date"
+            tools:text="7:00 PM  •  4 Guests" />
 
-        <!-- Party Size TextView -->
-        <TextView
-            android:id="@+id/text_party_size"
-            android:layout_width="0dp"
+        <!-- 3. ACTION BUTTONS -->
+        <!-- Using a barrier to ensure buttons are always below the text content -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="Guests: 4 people"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_status"
-            app:layout_constraintTop_toBottomOf="@id/text_reservation_time" />
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="text_reservation_time_and_guests" />
 
-        <!-- Horizontal Line Separator -->
-        <View
-            android:id="@+id/separator"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="#EEEEEE"
-            app:layout_constraintTop_toBottomOf="@id/text_party_size" />
-
-        <!-- Modify Button (Outlined/Secondary Action) -->
+        <!-- Modify Button (Outlined style, uses brand accent color) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_modify_reservation"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Modify"
+            android:layout_marginTop="16dp"
+            android:text="@string/modify_button"
+            app:layout_constraintEnd_toStartOf="@id/button_cancel_reservation"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/separator" />
+            app:layout_constraintTop_toBottomOf="@id/barrier_content" />
 
-        <!-- Cancel Button (Text Button/Tertiary Action) -->
+        <!-- Cancel Button (Text Button with error color for warning) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel_reservation"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Cancel"
-            android:textColor="#D32F2F"
-            app:iconTint="#D32F2F"
+            android:layout_marginStart="12dp"
+            android:text="@string/cancel_button"
+            android:textColor="@color/pg_error"
+            app:layout_constraintBottom_toBottomOf="@id/button_modify_reservation"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/button_modify_reservation"
-            app:layout_constraintTop_toBottomOf="@id/separator" />
+            app:layout_constraintTop_toTopOf="@id/button_modify_reservation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

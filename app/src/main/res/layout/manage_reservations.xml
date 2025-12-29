@@ -1,64 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Guest My Reservations screen: view, modify, or cancel existing bookings. -->
+<!--
+    Guest "My Reservations" Screen (Redesigned for Paragon Theme)
+
+    DESIGN PRINCIPLES APPLIED:
+    1. HIERARCHY: The gold title clearly states the screen's purpose.
+    2. MINIMALISM: Replaced the toolbar with a clean header and removed redundant text for a simpler UI.
+    3. CONSISTENCY: Fully integrated with the Charcoal, Maroon, and Gold theme, creating a seamless experience.
+    4. CLEAR AFFORDANCE: The layout clearly presents a list or an elegant empty state message.
+    5. ACCESSIBILITY: All interactive elements have content descriptions. The empty state is clear and readable.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context=".MyReservationsActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_my_reservations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:title="My Reservations"
-        app:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_24"
+    <!-- 1. SIMPLIFIED HEADER -->
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_navigate_back"
+        android:padding="8dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="4dp" />
+        app:tint="@color/pg_secondary_accent" />
 
     <TextView
-        android:id="@+id/text_upcoming_bookings"
-        android:layout_width="match_parent"
+        android:id="@+id/text_screen_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upcoming Bookings:"
-        android:textSize="18sp"
+        android:text="@string/my_reservations_title"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textColor="?attr/colorSecondary"
         android:textStyle="bold"
-        android:paddingHorizontal="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="8dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_my_reservations"/>
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button_back" />
 
-    <!-- RecyclerView for the list of user's reservations -->
-    <!-- Placeholder for item layout -->
-
-    <!-- Placeholder for an empty list message -->
-
+    <!-- 2. RECYCLERVIEW FOR RESERVATIONS LIST -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_my_reservations"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_upcoming_bookings"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="16dp"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
         tools:listitem="@layout/guest_reservation_list" />
 
-    <TextView
-        android:id="@+id/text_empty_reservations"
+    <!-- 3. ENHANCED EMPTY STATE MESSAGE -->
+    <LinearLayout
+        android:id="@+id/layout_empty_reservations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You have no upcoming reservations. Book one now!"
-        android:textSize="16sp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/button_back"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:contentDescription="@string/desc_empty_reservations_icon"
+            android:src="@drawable/ic_check_circle"
+            app:tint="?android:attr/textColorSecondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/empty_reservations_title"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/empty_reservations_subtitle"
+            android:textColor="?android:attr/textColorSecondary" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
