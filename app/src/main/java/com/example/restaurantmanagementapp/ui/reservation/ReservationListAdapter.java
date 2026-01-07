@@ -82,41 +82,16 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
             binding.buttonModifyReservation.setOnClickListener(v -> {
                 android.content.Intent intent = new android.content.Intent(context, EditReservationActivity.class);
                 intent.putExtra("RESERVATION_ID", reservation.getId());
+                boolean isStaff = context instanceof StaffReservationsActivity;
+                intent.putExtra("IS_STAFF", isStaff);
                 context.startActivity(intent);
             });
 
             binding.buttonCancelReservation.setOnClickListener(v -> {
-                new android.app.AlertDialog.Builder(context)
-                        .setTitle("Cancel Reservation")
-                        .setMessage("Are you sure you want to cancel this reservation?")
-                        .setPositiveButton("Yes", (dialog, which) -> {
-                            // Delete from DB in background
-                            new Thread(() -> {
-                                com.example.restaurantmanagementapp.data.local.AppDatabase db = com.example.restaurantmanagementapp.data.local.AppDatabase
-                                        .getDatabase(context);
-                                db.reservationDao().delete(reservation);
-
-                                // Remove from list on UI thread
-                                ((android.app.Activity) context).runOnUiThread(() -> {
-                                    int currentPosition = getBindingAdapterPosition();
-                                    if (currentPosition != RecyclerView.NO_POSITION) {
-                                        reservationList.remove(currentPosition);
-                                        notifyItemRemoved(currentPosition);
-                                        notifyItemRangeChanged(currentPosition, reservationList.size());
-                                        Toast.makeText(context, "Reservation Cancelled", Toast.LENGTH_SHORT).show();
-
-                                        // Navigate to Confirmation
-                                        android.content.Intent intent = new android.content.Intent(context,
-                                                ModificationSavedActivity.class);
-                                        intent.putExtra("TYPE", "CANCEL");
-                                        context.startActivity(intent);
-                                        ((android.app.Activity) context).finish(); // Optional
-                                    }
-                                });
-                            }).start();
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
+                // Navigate to dedicated Cancel Confirmation Page
+                android.content.Intent intent = new android.content.Intent(context, CancelReservationActivity.class);
+                intent.putExtra("RESERVATION_ID", reservation.getId());
+                context.startActivity(intent);
             });
         }
     }

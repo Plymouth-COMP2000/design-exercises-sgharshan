@@ -12,6 +12,7 @@
         <item name="colorOnSecondary">@color/pg_primary_background</item> <!-- Gold text should be on dark bg -->
 
         <!-- Background and Surface Colors -->
+        <item name="android:windowBackground">@drawable/gradient_background</item>
         <item name="android:colorBackground">@color/pg_primary_background</item>
         <item name="colorSurface">@color/pg_surface</item>
         <item name="colorError">@color/pg_error</item>

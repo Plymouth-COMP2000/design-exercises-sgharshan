@@ -63,16 +63,20 @@ public class MyReservationsActivity extends AppCompatActivity {
     }
 
     private void loadReservations() {
-        com.example.restaurantmanagementapp.data.local.AppDatabase db = com.example.restaurantmanagementapp.data.local.AppDatabase
-                .getDatabase(this);
-        // For now, fetch all. In real app, fetch by User ID.
-        java.util.List<Reservation> dbReservations = db.reservationDao().getAllReservations();
+        new Thread(() -> {
+            com.example.restaurantmanagementapp.data.local.AppDatabase db = com.example.restaurantmanagementapp.data.local.AppDatabase
+                    .getDatabase(this);
+            // For now, fetch all. In real app, fetch by User ID.
+            java.util.List<Reservation> dbReservations = db.reservationDao().getAllReservations();
 
-        reservationList.clear();
-        reservationList.addAll(dbReservations);
+            runOnUiThread(() -> {
+                reservationList.clear();
+                reservationList.addAll(dbReservations);
 
-        updateEmptyState();
-        adapter.notifyDataSetChanged();
+                updateEmptyState();
+                adapter.notifyDataSetChanged();
+            });
+        }).start();
     }
 
     private void updateEmptyState() {

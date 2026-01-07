@@ -94,13 +94,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             if (imageRef != null && (imageRef.startsWith("file://") || imageRef.startsWith("content://")
                     || imageRef.contains("/"))) {
                 itemImage.setImageURI(android.net.Uri.parse(imageRef));
-            } else {
+            } else if (imageRef != null && !imageRef.isEmpty()) {
                 int imageResId = context.getResources().getIdentifier(imageRef, "drawable", context.getPackageName());
                 if (imageResId != 0) {
                     itemImage.setImageResource(imageResId);
                 } else {
                     itemImage.setImageResource(R.drawable.ic_restaurant_menu); // Default fallback
                 }
+            } else {
+                itemImage.setImageResource(R.drawable.ic_restaurant_menu);
             }
 
             // Staff Mode Logic

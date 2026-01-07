@@ -21,7 +21,10 @@
     app:cardElevation="1dp"
     app:strokeColor="?attr/colorOutline"
     app:strokeWidth="0.5dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,7 +39,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.MediumComponent"
             tools:src="@drawable/pasta" />
 
         <!-- Item Name (Main Title) -->

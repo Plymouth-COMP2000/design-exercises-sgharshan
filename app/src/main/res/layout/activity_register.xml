@@ -5,9 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@drawable/gradient_background"
     android:padding="@dimen/spacing_large"
     tools:context=".ui.auth.RegisterActivity">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_navigate_back"
+        android:padding="12dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorOnSurface" />
 
     <!-- Title -->
     <TextView
@@ -22,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/card_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_back"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.card.MaterialCardView

@@ -15,7 +15,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@drawable/gradient_background"
     tools:context=".ReservationBookingActivity">
 
     <!-- 1. SIMPLIFIED HEADER -->
@@ -32,6 +32,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="?attr/colorOnSurface" />
+
+
 
     <TextView
         android:id="@+id/text_screen_title"
@@ -80,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/hint_date"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
                 app:endIconContentDescription="@string/desc_select_date"
                 app:endIconDrawable="@drawable/ic_event"
                 app:endIconMode="custom"
@@ -90,7 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Time Picker -->
@@ -101,6 +106,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/hint_time"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
                 app:endIconContentDescription="@string/desc_select_time"
                 app:endIconDrawable="@drawable/ic_access_time_24"
                 app:endIconMode="custom"
@@ -111,7 +118,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Number of Guests -->
@@ -122,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:hint="Number of Guests"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="?attr/colorPrimary">
 
@@ -130,7 +140,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:maxLength="2" />
+                    android:maxLength="2"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Contact Information Section -->
@@ -150,6 +161,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/hint_full_name"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="?attr/colorPrimary">
 
@@ -158,7 +171,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:imeOptions="actionNext"/>
+                    android:imeOptions="actionNext"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Contact Number -->
@@ -168,6 +182,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_contact_number"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
                 app:startIconDrawable="@drawable/ic_phone"
                 app:startIconTint="?attr/colorPrimary">
 
@@ -176,7 +192,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionDone"
+                    android:textColor="?attr/colorOnSurface" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Status Spinner (Staff Only) -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_status"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Reservation Status"
+                android:visibility="gone"
+                app:hintTextColor="?attr/colorSecondary"
+                app:boxStrokeColor="?attr/colorSecondary"
+                app:startIconDrawable="@drawable/ic_check_circle"
+                app:startIconTint="?attr/colorPrimary">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textColor="?attr/colorOnSurface" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

@@ -36,6 +36,7 @@ public class MenuBrowseActivity extends AppCompatActivity {
         categoryChipGroup = findViewById(R.id.chip_group_categories);
 
         // Setup the menu data and RecyclerView
+        allMenuItems = new ArrayList<>();
         loadAllMenuItems();
         setupRecyclerView();
 
@@ -50,7 +51,7 @@ public class MenuBrowseActivity extends AppCompatActivity {
                 R.id.fab_book_table);
         if (isStaffMode) {
             fab.setText("Add New Dish");
-            fab.setIconResource(android.R.drawable.ic_input_add);
+            fab.setIconResource(R.drawable.ic_add);
             // Reset Booking Button style overrides if necessary
             fab.setBackgroundTintList(
                     androidx.core.content.ContextCompat.getColorStateList(this, R.color.pg_secondary_accent));
@@ -114,17 +115,29 @@ public class MenuBrowseActivity extends AppCompatActivity {
     }
 
     private void loadAllMenuItems() {
-        com.example.restaurantmanagementapp.data.local.AppDatabase db = com.example.restaurantmanagementapp.data.local.AppDatabase
-                .getDatabase(this);
-        allMenuItems = db.menuItemDao().getAllMenuItems();
-
-        if (allMenuItems.isEmpty()) {
-            seedDatabase(db);
+        new Thread(() -> {
+            com.example.restaurantmanagementapp.data.local.AppDatabase db = com.example.restaurantmanagementapp.data.local.AppDatabase
+                    .getDatabase(this);
             allMenuItems = db.menuItemDao().getAllMenuItems();
-        }
+
+            // If empty, it might be first run and Database callback hasn't finished seeding
+            // yet.
+            // For simplicity in this non-reactive setup, we might wait or just show empty.
+            // Or we can keep the manual seeding fallback but async.
+            if (allMenuItems.isEmpty()) {
+                seedDatabase(db);
+                allMenuItems = db.menuItemDao().getAllMenuItems();
+            }
+
+            runOnUiThread(() -> setupRecyclerView());
+        }).start();
     }
 
     private void seedDatabase(com.example.restaurantmanagementapp.data.local.AppDatabase db) {
+        // Double check count to prevent duplicate if called concurrently
+        if (db.menuItemDao().getAllMenuItems().size() > 0)
+            return;
+
         List<MenuItem> initialItems = new ArrayList<>();
 
         // --- 5 VEGETARIAN DISHES ---

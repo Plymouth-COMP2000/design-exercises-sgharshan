@@ -27,23 +27,22 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "restaurant_database")
-                            .allowMainThreadQueries() // For simplicity in this assignment
                             .fallbackToDestructiveMigration()
+                            .addCallback(new RoomDatabase.Callback() {
+                                @Override
+                                public void onCreate(
+                                        @androidx.annotation.NonNull androidx.sqlite.db.SupportSQLiteDatabase db) {
+                                    super.onCreate(db);
+                                    new Thread(() -> {
+                                        UserDao dao = INSTANCE.userDao();
+                                        dao.insert(new User("staff_admin", "password", "Admin", "Staff",
+                                                "staff@test.com", "1234567890", "staff"));
+                                        dao.insert(new User("guest_user", "password", "Guest", "User", "guest@test.com",
+                                                "0987654321", "guest"));
+                                    }).start();
+                                }
+                            })
                             .build();
-
-                    // Synchronous seeding to ensure data exists before Login
-                    try {
-                        UserDao dao = INSTANCE.userDao();
-                        if (dao.getUser("staff@test.com") == null) {
-                            dao.insert(new User("staff_admin", "password", "Admin", "Staff",
-                                    "staff@test.com", "1234567890", "staff"));
-                            dao.insert(new User("guest_user", "password", "Guest", "User", "guest@test.com",
-                                    "0987654321", "guest"));
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        // Swallow error to allow app to start, but log it
-                    }
                 }
             }
         }

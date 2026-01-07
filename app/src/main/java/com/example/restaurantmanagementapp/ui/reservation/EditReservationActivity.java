@@ -21,6 +21,8 @@ public class EditReservationActivity extends AppCompatActivity {
     private Reservation currentReservation;
     private String reservationId;
 
+    private boolean isStaff = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +32,27 @@ public class EditReservationActivity extends AppCompatActivity {
         db = AppDatabase.getDatabase(this);
 
         reservationId = getIntent().getStringExtra("RESERVATION_ID");
+        isStaff = getIntent().getBooleanExtra("IS_STAFF", false);
+
         if (reservationId == null) {
             Toast.makeText(this, "Error loading reservation", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
+        setupUI();
         loadReservationData();
         setupClickListeners();
+    }
+
+    private void setupUI() {
+        if (isStaff) {
+            binding.inputLayoutStatus.setVisibility(android.view.View.VISIBLE);
+            String[] statuses = new String[] { "Pending", "Confirmed", "Cancelled" };
+            android.widget.ArrayAdapter<String> adapter = new android.widget.ArrayAdapter<>(
+                    this, android.R.layout.simple_dropdown_item_1line, statuses);
+            ((android.widget.AutoCompleteTextView) binding.spinnerStatus).setAdapter(adapter);
+        }
     }
 
     private void loadReservationData() {
@@ -52,6 +67,11 @@ public class EditReservationActivity extends AppCompatActivity {
                     binding.editTextName.setText(currentReservation.getCustomerName());
                     binding.editTextContact.setText(currentReservation.getCustomerContact());
                     binding.buttonConfirmReservation.setText("Update Reservation");
+
+                    if (isStaff && currentReservation.getStatus() != null) {
+                        ((android.widget.AutoCompleteTextView) binding.spinnerStatus)
+                                .setText(currentReservation.getStatus(), false);
+                    }
                 } else {
                     Toast.makeText(this, "Reservation not found!", Toast.LENGTH_SHORT).show();
                     finish();
@@ -97,6 +117,7 @@ public class EditReservationActivity extends AppCompatActivity {
         String guestsStr = binding.editTextPartySize.getText().toString();
         String name = binding.editTextName.getText().toString();
         String contact = binding.editTextContact.getText().toString();
+        String status = binding.spinnerStatus.getText().toString();
 
         if (date.isEmpty() || time.isEmpty() || guestsStr.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -113,6 +134,10 @@ public class EditReservationActivity extends AppCompatActivity {
         }
         currentReservation.setCustomerName(name);
         currentReservation.setCustomerContact(contact);
+
+        if (isStaff && !status.isEmpty()) {
+            currentReservation.setStatus(status);
+        }
 
         new Thread(() -> {
             db.reservationDao().update(currentReservation);

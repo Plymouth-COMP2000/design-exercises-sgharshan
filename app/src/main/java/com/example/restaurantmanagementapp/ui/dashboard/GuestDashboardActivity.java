@@ -10,6 +10,7 @@ import com.example.restaurantmanagementapp.ui.reservation.MyReservationsActivity
 
 public class GuestDashboardActivity extends AppCompatActivity {
 
+    private GuestDashboardViewModel viewModel;
     private GuestDashboardBinding binding;
 
     @Override
@@ -18,22 +19,23 @@ public class GuestDashboardActivity extends AppCompatActivity {
         binding = GuestDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        com.example.restaurantmanagementapp.util.SessionManager sessionManager = new com.example.restaurantmanagementapp.util.SessionManager(
-                this);
-        if (!sessionManager.isLoggedIn()) {
+        viewModel = new androidx.lifecycle.ViewModelProvider(this).get(GuestDashboardViewModel.class);
+
+        if (!viewModel.isLoggedIn()) {
             startActivity(new Intent(this, com.example.restaurantmanagementapp.ui.auth.MainActivity.class));
             finish();
             return;
         }
 
-        com.example.restaurantmanagementapp.data.model.User user = sessionManager.getUser();
-        if (user != null) {
-            binding.textUsername.setText(user.username);
-            binding.textEmail.setText(user.email);
-        }
+        viewModel.getUser().observe(this, user -> {
+            if (user != null) {
+                binding.textUsername.setText(user.username);
+                binding.textEmail.setText(user.email);
+            }
+        });
 
         binding.buttonLogout.setOnClickListener(v -> {
-            sessionManager.logout();
+            viewModel.logout();
             startActivity(new Intent(GuestDashboardActivity.this,
                     com.example.restaurantmanagementapp.ui.auth.MainActivity.class));
             finish();
@@ -57,13 +59,10 @@ public class GuestDashboardActivity extends AppCompatActivity {
             startActivity(new Intent(GuestDashboardActivity.this, MyReservationsActivity.class));
         });
 
-        binding.buttonProfile.setOnClickListener(v -> {
-            // Logout or Profile logic - Reusing for Logout just in case, or Toast
-            // But main logout is now on the card.
-            sessionManager.logout();
+        // Settings Button
+        binding.buttonSettings.setOnClickListener(v -> {
             startActivity(new Intent(GuestDashboardActivity.this,
-                    com.example.restaurantmanagementapp.ui.auth.MainActivity.class));
-            finish();
+                    com.example.restaurantmanagementapp.ui.settings.SettingsActivity.class));
         });
     }
 }

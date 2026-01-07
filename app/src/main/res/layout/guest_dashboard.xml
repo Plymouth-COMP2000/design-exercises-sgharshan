@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.dashboard.GuestDashboardActivity">
 
     <!-- Top App Bar/Header -->
@@ -90,6 +90,15 @@
                         android:text="Logout"
                         style="@style/Widget.Material3.Button.TextButton"
                         android:textColor="@color/pg_text_primary"/>
+
+                    <ImageButton
+                        android:id="@+id/button_settings"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_settings_new" 
+                        app:tint="@color/colorAccent"
+                        android:contentDescription="Settings" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -103,7 +112,8 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="4dp"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -154,7 +164,8 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:cardElevation="4dp"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="match_parent"

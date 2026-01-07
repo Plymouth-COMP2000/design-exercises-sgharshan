@@ -3,9 +3,11 @@ package com.example.restaurantmanagementapp.utils;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import com.example.restaurantmanagementapp.R;
+import com.example.restaurantmanagementapp.ui.settings.SettingsActivity;
 
 public class NotificationHelper {
 
@@ -14,6 +16,14 @@ public class NotificationHelper {
     private static final String CHANNEL_DESC = "Notifications for reservations and updates";
 
     public static void showNotification(Context context, String title, String message) {
+        // Check User Preference
+        SharedPreferences prefs = context.getSharedPreferences(SettingsActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        boolean isEnabled = prefs.getBoolean(SettingsActivity.KEY_NOTIFICATIONS_ENABLED, true);
+
+        if (!isEnabled) {
+            return;
+        }
+
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -31,6 +41,6 @@ public class NotificationHelper {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);
 
-        notificationManager.notify(1, builder.build());
+        notificationManager.notify((int) System.currentTimeMillis(), builder.build());
     }
 }

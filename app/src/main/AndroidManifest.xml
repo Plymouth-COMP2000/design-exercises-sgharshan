@@ -30,6 +30,12 @@
         <activity android:name=".ui.reservation.MyReservationsActivity" />
         <activity android:name=".ui.dashboard.GuestDashboardActivity" />
         <activity android:name=".ui.reservation.ModificationSavedActivity" />
+        <activity
+            android:name=".ui.reservation.CancelReservationActivity"
+            android:exported="false"
+            android:label="Cancel Reservation"
+            android:parentActivityName=".ui.dashboard.GuestDashboardActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
     </application>
 
 </manifest>

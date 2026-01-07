@@ -10,13 +10,29 @@
     tools:context=".ui.reservation.StaffReservationsActivity">
 
     <!-- Header -->
-    <LinearLayout
-        android:id="@+id/header_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <!-- Header with Back Button -->
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginTop="@dimen/spacing_medium"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/desc_navigate_back"
+        android:padding="12dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorOnSurface" />
+
+    <LinearLayout
+        android:id="@+id/text_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/button_back"
+        app:layout_constraintStart_toEndOf="@id/button_back"
+        app:layout_constraintTop_toTopOf="@id/button_back">
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,15 +41,18 @@
             android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
             android:textColor="?attr/colorSecondary"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="View and manage guest bookings"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-            android:textColor="?android:attr/textColorSecondary" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="View and manage guest bookings"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintStart_toStartOf="@id/text_header"
+        app:layout_constraintTop_toBottomOf="@id/text_header"/>
 
     <!-- List -->
     <androidx.recyclerview.widget.RecyclerView
@@ -45,7 +64,7 @@
         android:paddingBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_layout"
+        app:layout_constraintTop_toBottomOf="@id/text_subtitle"
         tools:listitem="@layout/guest_reservation_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,18 @@
 package com.example.restaurantmanagementapp.ui.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.restaurantmanagementapp.data.local.AppDatabase;
-import com.example.restaurantmanagementapp.data.local.UserDao;
 import com.example.restaurantmanagementapp.data.model.User;
+import com.example.restaurantmanagementapp.data.repository.UserRepository;
 import com.example.restaurantmanagementapp.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,12 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        userRepository = new UserRepository(getApplication());
+
         binding.buttonRegister.setOnClickListener(v -> handleRegister());
+
+        // Setup Back Button
+        binding.buttonBack.setOnClickListener(v -> finish());
 
         // Setup Spinner
         java.util.List<String> roles = new java.util.ArrayList<>();
@@ -47,35 +53,41 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        // Determine names
+        String firstName = name;
+        String lastName = "";
+        if (name.contains(" ")) {
+            String[] parts = name.split(" ", 2);
+            firstName = parts[0];
+            lastName = parts[1];
+        }
+
+        // Using email prefix as username for now
+        String username = email.split("@")[0];
         final String finalRole = role;
 
-        new Thread(() -> {
-            AppDatabase db = AppDatabase.getDatabase(this);
-            UserDao dao = db.userDao();
+        User newUser = new User(username, password, firstName, lastName, email, "0000000000", finalRole);
 
-            if (dao.getUser(email) != null) {
-                runOnUiThread(() -> Toast.makeText(this, "Email already registered", Toast.LENGTH_SHORT).show());
-            } else {
-                // Determine names
-                String firstName = name;
-                String lastName = "";
-                if (name.contains(" ")) {
-                    String[] parts = name.split(" ", 2);
-                    firstName = parts[0];
-                    lastName = parts[1];
-                }
+        binding.buttonRegister.setEnabled(false);
+        Toast.makeText(this, "Registering...", Toast.LENGTH_SHORT).show();
 
-                // Constructor: username, password, firstname, lastname, email, contact,
-                // usertype
-                User newUser = new User(email.split("@")[0], password, firstName, lastName, email, "0000000000",
-                        finalRole);
-                dao.insert(newUser);
-
+        userRepository.register(newUser, new UserRepository.RegisterCallback() {
+            @Override
+            public void onSuccess() {
                 runOnUiThread(() -> {
-                    Toast.makeText(this, "Registration Successful! Please Login.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Registration Successful! Please Login.", Toast.LENGTH_LONG)
+                            .show();
                     finish();
                 });
             }
-        }).start();
+
+            @Override
+            public void onError(String message) {
+                runOnUiThread(() -> {
+                    binding.buttonRegister.setEnabled(true);
+                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
     }
 }

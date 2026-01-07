@@ -7,39 +7,61 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantmanagementapp.R;
-import com.example.restaurantmanagementapp.data.local.AppDatabase;
-import com.example.restaurantmanagementapp.data.local.UserDao;
 import com.example.restaurantmanagementapp.data.model.User;
+import com.example.restaurantmanagementapp.data.repository.UserRepository;
 import com.example.restaurantmanagementapp.databinding.ActivityMainBinding;
 import com.example.restaurantmanagementapp.ui.dashboard.GuestDashboardActivity;
 import com.example.restaurantmanagementapp.ui.dashboard.StaffDashboardActivity;
+import com.example.restaurantmanagementapp.util.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        userRepository = new UserRepository(getApplication());
         setupClickListeners();
+
+        // Schedule Background Sync
+        androidx.work.PeriodicWorkRequest syncRequest = new androidx.work.PeriodicWorkRequest.Builder(
+                com.example.restaurantmanagementapp.data.remote.SyncWorker.class,
+                15, java.util.concurrent.TimeUnit.MINUTES)
+                .setConstraints(new androidx.work.Constraints.Builder()
+                        .setRequiredNetworkType(androidx.work.NetworkType.CONNECTED)
+                        .build())
+                .build();
+
+        androidx.work.WorkManager.getInstance(this).enqueueUniquePeriodicWork(
+                "UserSyncWork",
+                androidx.work.ExistingPeriodicWorkPolicy.KEEP,
+                syncRequest);
     }
 
     private void setupClickListeners() {
         binding.buttonLogin.setOnClickListener(v -> handleLogin());
-        binding.textRegisterPrompt.setOnClickListener(v -> handleRegistration());
-        binding.textRegisterLink.setOnClickListener(v -> handleRegistration());
+
+        View.OnClickListener registerListener = v -> {
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        };
+        binding.textRegisterPrompt.setOnClickListener(registerListener);
+        binding.textRegisterLink.setOnClickListener(registerListener);
+
         binding.textForgotPassword.setOnClickListener(
                 v -> Toast.makeText(MainActivity.this, "Forgot Password clicked!", Toast.LENGTH_SHORT).show());
     }
 
     private void handleLogin() {
-        String email = binding.editTextEmail.getText().toString().trim();
+        String username = binding.editTextEmail.getText().toString().trim();
         String password = binding.editTextPassword.getText().toString().trim();
 
-        if (email.isEmpty()) {
-            binding.inputLayoutEmail.setError("Email is required");
+        if (username.isEmpty()) {
+            binding.inputLayoutEmail.setError("Username/Email is required");
             return;
         }
         if (password.isEmpty()) {
@@ -47,41 +69,35 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        try {
-            AppDatabase db = AppDatabase.getDatabase(this);
-            // Note: Using 'login' from DAO which expects email/password
-            User user = db.userDao().login(email, password);
+        binding.buttonLogin.setEnabled(false);
+        Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
 
-            if (user != null) {
-                // Save session
-                com.example.restaurantmanagementapp.util.SessionManager sessionManager = new com.example.restaurantmanagementapp.util.SessionManager(
-                        this);
-                sessionManager.saveUser(user);
+        userRepository.login(username, password, new UserRepository.LoginCallback() {
+            @Override
+            public void onSuccess(User user) {
+                runOnUiThread(() -> {
+                    // Update Session
+                    SessionManager sessionManager = new SessionManager(MainActivity.this);
+                    sessionManager.saveUser(user);
 
-                Toast.makeText(this, "Welcome " + user.firstname, Toast.LENGTH_SHORT).show();
-                navigateToDashboard(user.usertype);
-            } else {
-                Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                    binding.buttonLogin.setEnabled(true);
+                    Toast.makeText(MainActivity.this, "Welcome " + user.firstname, Toast.LENGTH_SHORT).show();
+                    proceedToDashboard(user);
+                });
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Login Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
+
+            @Override
+            public void onError(String message) {
+                runOnUiThread(() -> {
+                    binding.buttonLogin.setEnabled(true);
+                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
     }
 
-    private void handleRegistration() {
-        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    private void navigateToDashboard(String usertype) {
-        Intent intent;
-        if ("staff".equalsIgnoreCase(usertype) || "admin".equalsIgnoreCase(usertype)) {
-            intent = new Intent(MainActivity.this, StaffDashboardActivity.class);
-        } else {
-            intent = new Intent(MainActivity.this, GuestDashboardActivity.class);
-        }
-        startActivity(intent);
+    private void proceedToDashboard(User user) {
+        startActivity(new Intent(this, user.isStaff() ? StaffDashboardActivity.class : GuestDashboardActivity.class));
         finish();
     }
 }

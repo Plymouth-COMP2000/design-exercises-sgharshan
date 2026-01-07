@@ -11,12 +11,22 @@ import com.example.restaurantmanagementapp.ui.reservation.StaffReservationsActiv
 
 public class StaffDashboardActivity extends AppCompatActivity {
     private ActivityStaffDashboardBinding binding;
+    private StaffDashboardViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityStaffDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        viewModel = new androidx.lifecycle.ViewModelProvider(this).get(StaffDashboardViewModel.class);
+
+        // Security Check
+        if (!viewModel.isLoggedIn()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            return;
+        }
 
         // Manage Menu Card
         binding.cardManageMenu.setOnClickListener(v -> {
@@ -33,8 +43,15 @@ public class StaffDashboardActivity extends AppCompatActivity {
 
         // Logout Button
         binding.buttonLogout.setOnClickListener(v -> {
+            viewModel.logout();
             startActivity(new Intent(StaffDashboardActivity.this, MainActivity.class));
             finish();
+        });
+
+        // Settings Button
+        binding.buttonSettings.setOnClickListener(v -> {
+            startActivity(new Intent(StaffDashboardActivity.this,
+                    com.example.restaurantmanagementapp.ui.settings.SettingsActivity.class));
         });
     }
 }
