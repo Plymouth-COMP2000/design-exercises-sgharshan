@@ -37,7 +37,13 @@ public class MyReservationsActivity extends AppCompatActivity {
         setupUI();
         setupClickListeners();
 
-        // 4. Load reservation data
+        // 4. Load reservation data (Called in onResume now)
+        // loadReservations();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadReservations();
     }
 

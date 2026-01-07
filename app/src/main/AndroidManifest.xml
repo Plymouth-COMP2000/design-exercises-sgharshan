@@ -23,6 +23,7 @@
         <activity android:name=".ui.dashboard.StaffDashboardActivity" />
         <activity android:name=".ui.auth.RegisterActivity" />
         <activity android:name=".ui.menu.ManageMenuActivity" />
+        <activity android:name=".ui.reservation.EditReservationActivity" />
         <activity android:name=".ui.reservation.BookingConfirmedActivity" />
         <activity android:name=".ui.reservation.StaffReservationsActivity" />
         <activity android:name=".ui.menu.MenuBrowseActivity" />

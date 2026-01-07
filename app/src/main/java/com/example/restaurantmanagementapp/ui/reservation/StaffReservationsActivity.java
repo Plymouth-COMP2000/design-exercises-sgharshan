@@ -24,10 +24,16 @@ public class StaffReservationsActivity extends AppCompatActivity {
 
         binding.recyclerViewStaffReservations.setLayoutManager(new LinearLayoutManager(this));
 
-        loadReservations();
+        // loadReservations(); // Removed from here, moved to onResume
 
         // Setup Back Button
         findViewById(R.id.button_back).setOnClickListener(v -> finish());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadReservations();
     }
 
     private void loadReservations() {
